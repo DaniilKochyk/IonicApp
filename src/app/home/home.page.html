@@ -1,20 +1,53 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Notowanie wydatków i przychodów
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content >
+  <ion-list>
+    <ion-item lines="full">
+      <ion-icon slot="start" name="moon"></ion-icon>
+      <ion-label>
+        Włączyć ciemny motyw
+      </ion-label>
+      <ion-toggle id="themeToggle" slot="end" [ngModel]="darkMode" (ionChange)="ddrk()"></ion-toggle>
+    </ion-item>
+  </ion-list>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="main-div ion-padding">
+   <!-- <h1 class="ion-padding">Notowanie wydatków i przychodów</h1> -->
+   <ion-img src="../../assets/img.png" alt=""></ion-img>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+   <div class="list">
+     <ion-list>
+        <ion-item-sliding *ngFor="let data of tran">
+          <ion-item>
+            <ion-label>
+              {{data.title}}
+              <p [ngClass]="{expense: data.type == 'expence',income: data.type == 'income'}">{{data.stitle}}</p>
+            </ion-label>
+            <p class="amount" [ngClass]="{expense: data.type == 'expence',income: data.type == 'income'}">{{data.kwota}} Zł</p>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger">
+          
+            <ion-icon name="trash-outline" (click)="[delete_data(data.id), alert(), toastDel()]"></ion-icon>
+           </ion-item-option>
+           <ion-item-option color="dark">
+            <ion-icon name="create-outline" routerLink="/add-edit/{{data.id}}"></ion-icon>
+           </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+     </ion-list>
   </div>
+    <ion-fab-button color="dark">
+    <ion-icon name="add-outline" routerLink="/add-edit/add"></ion-icon>
+  </ion-fab-button>
+ </div>
+ 
 </ion-content>
+
+

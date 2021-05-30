@@ -1,5 +1,7 @@
 {
   "name": "IonUProj",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

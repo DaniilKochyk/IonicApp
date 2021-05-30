@@ -1,0 +1,30 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+     {{isedit ? 'Edycja' : 'Dodanie'}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="all">
+ <ion-icon name="arrow-back-outline" class="ion-padding" routerLink="/home"></ion-icon>
+ <div class="main-section">
+   <!-- <h3 class="ion-padding">{{isedit ? 'Edycja' : 'Dodanie'}}</h3> -->
+   <div class="form">
+
+     <ion-select interafce="action" [(ngModel)]="type" placeholder="Typ notowania">
+       <ion-select-option value="income">Przychod</ion-select-option>
+       <ion-select-option value="expence">Wydatek</ion-select-option>
+     </ion-select>
+
+     <ion-input placeholder="Tytuł" [(ngModel)]="title"></ion-input>
+     <ion-input placeholder="Szegóły" [(ngModel)]="stitle"></ion-input>
+     <ion-input placeholder="Kwota" type="number" [(ngModel)]="kwota"></ion-input>
+
+     <ion-button color="dark" (click)="addData()">{{isedit ? 'Edytować' : 'Dodać'}} &nbsp; <ion-spinner *ngIf="loading"></ion-spinner></ion-button>
+   </div>
+ </div>
+</div>
+</ion-content>
